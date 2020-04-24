@@ -68,11 +68,20 @@ while ~isempty(email_contents)
     % (the porterStemmer sometimes has issues, so we use a try catch block)
     try str = porterStemmer(strtrim(str)); 
     catch str = ''; continue;
-    end;
+    end
 
     % Skip the word if it is too short
     if length(str) < 1
        continue;
+    end
+    
+    
+    for j=1:length(vocabList)
+        
+        if strcmp(vocabList{j}, str)
+            word_indices = [word_indices; j];
+        end
+
     end
 
     % Look up the word in the dictionary and add to word_indices if
